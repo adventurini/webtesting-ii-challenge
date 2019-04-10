@@ -1,40 +1,73 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
+
+import Display from './Display'
+import Dashboard from './Dashboard'
+
 
 class App extends Component {
-  state= {
+  state = {
     atBat: 1,
     balls: 0,
     strikes: 0,
-    strikeout:false,
-    walk:false,
+    strikeout: false,
+    walk: false,
     numStrikeouts: 0,
     numWalks: 0,
-    inning:1,
-    hits:0,
-    foulBalls:0
+    inning: 1,
+    hits: 0,
+    foulBalls: 0,
   }
 
-  hitBall=()=> {
-    if(this.state.balls = 3){
-      this.setState({...this.state, balls: 0, strikeout: false, walk:true, atBat:this.state.atBat + 1})
+  hitBall = () => {
+    if (this.state.balls === 3) {
+      return this.setState({
+        ...this.state,
+        balls: 0,
+        strikeout: false,
+        walk: true,
+        atBat: this.state.atBat + 1
+      })
     }
     this.setState({
-      ...this.state, balls: this.state.balls+1, strikeout: false, walk:false
+      ...this.state,
+      balls: this.state.balls + 1,
+      strikeout: false,
+      walk: false,
     })
   }
 
   hitStrike = () => {
-    if(this.state.strikes === 2){
-      if(this.state.numStrikeouts ===2){
-        this.setState({
-          ...this.state, hits:0, foulBalls:0, strikes:0, balls: 0, strikeout: true, walk:false, atBat: 1, numStrikeouts: 0, inning: this.state.inning+1
-        })
+    if (this.state.strikes === 2) {
+      if (this.state.numStrikeouts === 2) {
+        return this.setState({
+          ...this.state,
+          hits: 0,
+          foulBalls: 0,
+          strikes: 0,
+          balls: 0,
+          strikeout: true,
+          walk: false,
+          atBat: 1,
+          numStrikeouts: 0,
+          inning: this.state.inning + 1
+        })  
       }
-      this.setState({...this.state, strikes:0, strikeout: true, walk:false, atBat: this.state.atBat+ 1, numStrikeouts: this.state.numStrikeouts+1})
+      return this.setState({
+        ...this.state,
+        strikes: 0,
+        strikeout: true,
+        walk: false,
+        atBat: this.state.atBat + 1,
+        numStrikeouts: this.state.numStrikeouts + 1,
+      })
     }
-    this.setState({...this.state, strikes:this.state.strikes+1, strikeout:false, walk:false})
+    this.setState({
+      ...this.state,
+      strikes: this.state.strikes + 1,
+      strikeout: false,
+      walk: false,
+    })
   }
 
   hitFoul = () => {
@@ -68,8 +101,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-      
+      <>
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
@@ -93,9 +125,12 @@ class App extends Component {
             />
           </header>
         </div>
-        </div>
+      </>
     );
   }
 }
 
+
 export default App;
+
+
